@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // create a product database instance
-        ProductDatabase appDb = ProductDatabase.getInstance(this);
-        List<Product> products = appDb.productDao().getProductList();
+//        ProductDatabase appDb = ProductDatabase.getInstance(this);
+//        List<Product> products = appDb.productDao().getProductList();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

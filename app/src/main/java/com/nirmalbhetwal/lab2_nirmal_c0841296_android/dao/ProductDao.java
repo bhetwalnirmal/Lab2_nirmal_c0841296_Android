@@ -15,8 +15,8 @@ public interface ProductDao {
     @Query("Select * from products")
     List<Product> getProductList();
 
-//    @Insert
-//    void insertProduct(Product product);
+    @Insert
+    void insertProduct(Product product);
 //
 //    @Update
 //    void updateProduct(Product product);
