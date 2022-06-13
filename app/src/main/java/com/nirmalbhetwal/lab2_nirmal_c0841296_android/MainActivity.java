@@ -13,10 +13,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.nirmalbhetwal.lab2_nirmal_c0841296_android.abstracts.ProductDatabase;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.databinding.ActivityMainBinding;
+import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // create a product database instance
+        ProductDatabase appDb = ProductDatabase.getInstance(this);
+        List<Product> products = appDb.productDao().getProductList();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
