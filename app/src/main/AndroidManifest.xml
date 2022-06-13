@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab2_nirmal_c0841296_Android">
-<!--        <activity-->
-<!--            android:name=".activities.AddProductActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".activities.Dashboard"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".activities.AddProductActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".activities.AddProductActivity"
             android:exported="true"

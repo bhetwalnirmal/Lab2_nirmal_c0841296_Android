@@ -7,13 +7,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.R;
+import com.nirmalbhetwal.lab2_nirmal_c0841296_android.abstracts.ProductDatabase;
+import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
+
+import java.util.List;
 
 public class AddProductActivity extends AppCompatActivity {
 
     EditText etProductName, etProductDescription, etProductPrice;
     Button btnAddNewProduct;
+    ProductDatabase appDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,8 @@ public class AddProductActivity extends AppCompatActivity {
         etProductDescription = findViewById(R.id.editTextProductDescription);
         etProductPrice = findViewById(R.id.editTextProductPrice);
         btnAddNewProduct = findViewById(R.id.addNewProduct);
+
+        appDb = ProductDatabase.getInstance(this);
 
         // set click listener of the button
         btnAddNewProduct.setOnClickListener(new View.OnClickListener() {
@@ -38,8 +46,27 @@ public class AddProductActivity extends AppCompatActivity {
                     price = Double.parseDouble(etProductPrice.getText().toString().trim());
                 }
 
-                Log.d("TAG", String.format("Name: %s, des: %s, price: %.2f", name, description, price));
+                // create a new product
+                Product product = new Product(name, description, price);
+                // save the product to database
+                saveProductToDatabase(product);
             }
         });
+    }
+
+    protected void saveProductToDatabase (Product product) {
+        this.appDb.productDao().insertProduct(product);
+
+        // display a toast to inform user that the data has been saved
+        Toast.makeText(AddProductActivity.this, "Product saved", Toast.LENGTH_SHORT).show();
+
+        // reset the form
+        resetForm();
+    }
+
+    protected void resetForm () {
+        etProductName.setText("");
+        etProductDescription.setText("");
+        etProductPrice.setText("");
     }
 }
