@@ -1,6 +1,7 @@
 package com.nirmalbhetwal.lab2_nirmal_c0841296_android.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -25,17 +26,26 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        // create a inflater
+        LayoutInflater inflater = LayoutInflater.from(context);
+        // use the inflater to inflate from the dashboard_row xml layout file
+        View listItem = inflater.inflate(R.layout.layout_dashboard_row, parent, false);
+
+        ViewHolder viewHolder = new ViewHolder(listItem);
+
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final Product product = productList.get(position);
 
+        holder.tvProductName.setText(product.getName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return this.productList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

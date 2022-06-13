@@ -1,12 +1,14 @@
 package com.nirmalbhetwal.lab2_nirmal_c0841296_android.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.R;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.abstracts.ProductDatabase;
+import com.nirmalbhetwal.lab2_nirmal_c0841296_android.adapters.ProductAdapter;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
 
 import java.util.ArrayList;
@@ -26,5 +28,8 @@ public class Dashboard extends AppCompatActivity {
 
         productsRecyclerView = (RecyclerView) findViewById(R.id.productsRecyclerView);
         productList = appDb.productDao().getProductList();
+        ProductAdapter productAdapter = new ProductAdapter(this, productList);
+        productsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        productsRecyclerView.setAdapter(productAdapter);
     }
 }
