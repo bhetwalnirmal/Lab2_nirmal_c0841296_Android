@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.R;
+import com.nirmalbhetwal.lab2_nirmal_c0841296_android.abstracts.ProductDatabase;
+import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
+
+import java.util.List;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -26,6 +30,8 @@ public class AddProductActivity extends AppCompatActivity {
         etProductPrice = findViewById(R.id.editTextProductPrice);
         btnAddNewProduct = findViewById(R.id.addNewProduct);
 
+        ProductDatabase appDb = ProductDatabase.getInstance(this);
+
         // set click listener of the button
         btnAddNewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +44,8 @@ public class AddProductActivity extends AppCompatActivity {
                     price = Double.parseDouble(etProductPrice.getText().toString().trim());
                 }
 
-                Log.d("TAG", String.format("Name: %s, des: %s, price: %.2f", name, description, price));
+                Product product = new Product(name, description, price);
+                appDb.productDao().insertProduct(product);
             }
         });
     }

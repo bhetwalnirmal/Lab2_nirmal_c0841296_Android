@@ -2,6 +2,7 @@ package com.nirmalbhetwal.lab2_nirmal_c0841296_android.models;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +24,14 @@ public class Product {
     // constructor for product class
     public Product(int id, String name, String description, double price) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    // constructor to initialize object without requiring id
+    @Ignore
+    public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
         this.price = price;
