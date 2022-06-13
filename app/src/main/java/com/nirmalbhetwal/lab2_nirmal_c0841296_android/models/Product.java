@@ -1,4 +1,4 @@
-package com.nirmalbhetwal.lab2_nirmal_c0841296_android;
+package com.nirmalbhetwal.lab2_nirmal_c0841296_android.models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
