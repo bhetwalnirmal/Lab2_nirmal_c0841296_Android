@@ -1,6 +1,7 @@
 package com.nirmalbhetwal.lab2_nirmal_c0841296_android.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,7 @@ public class Dashboard extends AppCompatActivity {
     RecyclerView productsRecyclerView;
     List<Product> productList = new ArrayList<>();
     ProductDatabase appDb;
+    LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,10 @@ public class Dashboard extends AppCompatActivity {
         productsRecyclerView = (RecyclerView) findViewById(R.id.productsRecyclerView);
         productList = appDb.productDao().getProductList();
         ProductAdapter productAdapter = new ProductAdapter(this, productList);
-        productsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        layoutManager = new LinearLayoutManager(this);
+        productsRecyclerView.setLayoutManager(layoutManager);
         productsRecyclerView.setAdapter(productAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(productsRecyclerView.getContext(), layoutManager.getOrientation());
+        productsRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 }
