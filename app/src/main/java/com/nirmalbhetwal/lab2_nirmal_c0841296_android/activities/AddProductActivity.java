@@ -43,6 +43,7 @@ public class AddProductActivity extends AppCompatActivity {
                 String name = etProductName.getText().toString().trim();
                 String description = etProductDescription.getText().toString().trim();
                 double price = 0;
+
                 if (!etProductPrice.getText().toString().trim().equals("")) {
                     price = Double.parseDouble(etProductPrice.getText().toString().trim());
                 }
@@ -58,8 +59,14 @@ public class AddProductActivity extends AppCompatActivity {
                     product.setName(name);
                     product.setDescription(description);
                     product.setPrice(price);
+
                     updateProduct(product);
                 }
+
+                Intent intent = new Intent(AddProductActivity.this, DashboardAcitvity.class);
+                intent.putExtra("refresh_dashboard", 1);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 
@@ -74,10 +81,6 @@ public class AddProductActivity extends AppCompatActivity {
         appDb.productDao().updateProduct(product);
 
         Toast.makeText(AddProductActivity.this, "Updated product with id " + product.getId() + " successfully!", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(AddProductActivity.this, DashboardAcitvity.class);
-        intent.putExtra("refresh_dashboard", 1);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 
     private void populateAddProductForm(Product product) {

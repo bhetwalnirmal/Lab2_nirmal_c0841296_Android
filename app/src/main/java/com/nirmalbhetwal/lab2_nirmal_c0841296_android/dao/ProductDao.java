@@ -23,4 +23,7 @@ public interface ProductDao {
 
     @Delete
     void deleteProduct(Product product);
+
+    @Query("Select * from products where name like '%' || :search || '%' or description like '%' || :search || '%'" )
+    List<Product> getSearchResults(String search);
 }

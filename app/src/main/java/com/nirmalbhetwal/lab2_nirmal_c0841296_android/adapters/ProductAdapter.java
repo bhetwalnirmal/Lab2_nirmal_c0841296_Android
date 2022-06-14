@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.R;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
@@ -48,6 +49,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public int getItemCount() {
         return this.productList.size();
+    }
+
+    public void filterData(String s) {
+        List<Product> products = new ArrayList<>();
+
+        for (Product product : productList) {
+
+        }
+
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
