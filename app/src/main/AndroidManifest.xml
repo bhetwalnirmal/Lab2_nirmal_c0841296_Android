@@ -14,7 +14,9 @@
 <!--            android:exported="false" />-->
          <activity
          android:name=".activities.AddProductActivity"
+         android:label="Add new product"
          android:exported="false" />
+
         <activity
             android:name=".activities.DashboardAcitvity"
             android:exported="true"
