@@ -1,5 +1,6 @@
 package com.nirmalbhetwal.lab2_nirmal_c0841296_android.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -8,18 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.R;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.abstracts.ProductDatabase;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
-
-import java.util.List;
 
 public class AddProductActivity extends AppCompatActivity {
 
     EditText etProductName, etProductDescription, etProductPrice;
     Button btnAddNewProduct;
     ProductDatabase appDb;
+    Product product = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,25 @@ public class AddProductActivity extends AppCompatActivity {
                 saveProductToDatabase(product);
             }
         });
+
+        product = (Product) getIntent().getSerializableExtra("product");
+
+        if (product != null) {
+            populateAddProductForm(product);
+        }
+    }
+
+    private void populateAddProductForm(Product product) {
+        etProductName.setText(product.getName());
+        etProductDescription.setText(product.getDescription());
+
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle(String.format("Update product of id = %d", product.getId()));
+        }
+
+        btnAddNewProduct.setText("UPDATE PRODUCT");
     }
 
     protected void saveProductToDatabase (Product product) {

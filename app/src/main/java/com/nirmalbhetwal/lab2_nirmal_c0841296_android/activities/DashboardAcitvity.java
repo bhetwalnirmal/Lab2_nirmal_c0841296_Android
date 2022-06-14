@@ -75,7 +75,10 @@ public class DashboardAcitvity extends AppCompatActivity {
                             productAdapter.setProductList(productList);
                             break;
                         case R.id.edit_task:
-                            Toast.makeText(getApplicationContext(),"Edit Not Available",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(DashboardAcitvity.this, AddProductActivity.class);
+                            Product product = productList.get(position);
+                            intent.putExtra("product", product);
+                            startActivity(intent);
                             break;
 
                     }
