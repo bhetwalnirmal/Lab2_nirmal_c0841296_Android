@@ -42,7 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         holder.tvProductName.setText(product.getName());
         holder.tvProductDescription.setText(product.getDescription());
-//        holder.tvProductPrice.setText(String.format("$ %.2f", product.getPrice()));
+        holder.tvProductPrice.setText(String.format("$ %.2f", product.getPrice()));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
             this.tvProductName = (TextView) itemView.findViewById(R.id.tvProductName);
             this.tvProductDescription = (TextView) itemView.findViewById(R.id.tvProductDescription);
-//            this.tvProductPrice = (TextView) itemView.findViewById(R.id.tvProductPrice);
+            this.tvProductPrice = (TextView) itemView.findViewById(R.id.tvProductPrice);
         }
     }
 
