@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,8 +81,18 @@ public class DashboardAcitvity extends AppCompatActivity {
                 public void onSwipeOptionClicked(int viewID, int position) {
                     switch (viewID){
                         case R.id.delete_task:
-                            deleteProduct(position);
-                            productAdapter.setProductList(productList);
+                            new AlertDialog.Builder(DashboardAcitvity.this)
+                                    .setTitle("Delete product")
+                                    .setMessage("Are you sure you want to delete this entry?")
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            deleteProduct(position);
+                                            productAdapter.setProductList(productList);
+                                        }
+                                    })
+                                    .setNegativeButton(android.R.string.cancel, null)
+                                    .show();
                             break;
                         case R.id.edit_task:
                             Intent intent = new Intent(DashboardAcitvity.this, AddProductActivity.class);
