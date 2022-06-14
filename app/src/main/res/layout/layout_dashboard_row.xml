@@ -85,7 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:foreground="?attr/selectableItemBackground">
-
             <TextView
                 android:id="@+id/tvProductName"
                 android:layout_width="0dp"
@@ -94,12 +93,14 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                tools:text="@tools:sample/first_names"
+                tools:text="Product Name"
                 style="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintBottom_toTopOf="@+id/tvProductDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
 
             <TextView
                 android:id="@+id/tvProductDescription"
@@ -109,7 +110,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                tools:text="@tools:sample/cities"
+                android:maxLines="6"
+                tools:text="Product Description"
                 android:lines="1"
                 android:layout_marginTop="5dp"
                 style="@style/TextAppearance.AppCompat.Medium"
