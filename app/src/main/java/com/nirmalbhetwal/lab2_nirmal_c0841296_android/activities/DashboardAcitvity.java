@@ -136,7 +136,8 @@ public class DashboardAcitvity extends AppCompatActivity {
     }
 
     private void filterData(String s) {
-        Log.d("TAG", s);
+        this.productList = this.appDb.productDao().getSearchResults(s);
+        productAdapter.setProductList(productList);
     }
 
     @Override
