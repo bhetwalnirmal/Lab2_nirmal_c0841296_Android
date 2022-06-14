@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class DashboardAcitvity extends AppCompatActivity {
     ProductDatabase appDb;
     LinearLayoutManager layoutManager;
     FloatingActionButton fabAddNewProduct;
+    ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class DashboardAcitvity extends AppCompatActivity {
 
         productsRecyclerView = (RecyclerView) findViewById(R.id.productsRecyclerView);
         productList = appDb.productDao().getProductList();
-        ProductAdapter productAdapter = new ProductAdapter(this, productList);
+        productAdapter = new ProductAdapter(this, productList);
         layoutManager = new LinearLayoutManager(this);
         productsRecyclerView.setLayoutManager(layoutManager);
         productsRecyclerView.setAdapter(productAdapter);
@@ -86,6 +88,13 @@ public class DashboardAcitvity extends AppCompatActivity {
             });
 
         productsRecyclerView.addOnItemTouchListener(touchListener);
+
+        int refresh_dashboard = (int) getIntent().getIntExtra("refresh_dashboard", 0);
+
+        if (refresh_dashboard != 0 && refresh_dashboard == 1) {
+            List<Product> productList = appDb.productDao().getProductList();
+            productAdapter.setProductList(productList);
+        }
     }
 
     private void deleteProduct(int position) {
