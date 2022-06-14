@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="100"
+        android:padding="15dp"
+        android:textSize="16sp"
+    >
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:textSize="16sp"
+            android:text="name"
+            android:textStyle="bold"
+            android:gravity="left"
+            />
+        <TextView
+            android:id="@+id/tvProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_weight="50"
+            android:text="$50.00"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvProductDescription"
+        android:layout_width="wrap_content"
+        android:layout_weight="50"
+        android:text="The description of the product is very good product and it is portable and "
+        android:textSize="16sp"
+        android:inputType="textLongMessage"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:singleLine="false"
+        />
+
+</LinearLayout>
