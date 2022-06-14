@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -19,6 +20,7 @@ import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
 public class AddProductActivity extends AppCompatActivity {
 
     EditText etProductName, etProductDescription, etProductPrice;
+    TextView tvaddNewProductText;
     Button btnAddNewProduct;
     ProductDatabase appDb;
     Product product = null;
@@ -33,6 +35,7 @@ public class AddProductActivity extends AppCompatActivity {
         etProductDescription = findViewById(R.id.editTextProductDescription);
         etProductPrice = findViewById(R.id.editTextProductPrice);
         btnAddNewProduct = findViewById(R.id.addNewProduct);
+        tvaddNewProductText = (TextView) findViewById(R.id.addNewProductText);
 
         appDb = ProductDatabase.getInstance(this);
 
@@ -87,6 +90,7 @@ public class AddProductActivity extends AppCompatActivity {
         etProductName.setText(product.getName());
         etProductDescription.setText(product.getDescription());
         etProductPrice.setText(String.format("%.2f", product.getPrice()));
+        tvaddNewProductText.setText("Update product");
 
         ActionBar actionBar = getSupportActionBar();
 
