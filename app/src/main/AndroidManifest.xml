@@ -16,7 +16,7 @@
          android:name=".activities.AddProductActivity"
          android:exported="false" />
         <activity
-            android:name=".activities.Dashboard"
+            android:name=".activities.DashboardAcitvity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Lab2_nirmal_c0841296_Android.NoActionBar">

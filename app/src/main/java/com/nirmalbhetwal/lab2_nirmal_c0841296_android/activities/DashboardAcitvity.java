@@ -5,8 +5,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.R;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.abstracts.ProductDatabase;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.adapters.ProductAdapter;
@@ -15,12 +18,13 @@ import com.nirmalbhetwal.lab2_nirmal_c0841296_android.models.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dashboard extends AppCompatActivity {
+public class DashboardAcitvity extends AppCompatActivity {
 
     RecyclerView productsRecyclerView;
     List<Product> productList = new ArrayList<>();
     ProductDatabase appDb;
     LinearLayoutManager layoutManager;
+    FloatingActionButton fabAddNewProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +40,15 @@ public class Dashboard extends AppCompatActivity {
         productsRecyclerView.setAdapter(productAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(productsRecyclerView.getContext(), layoutManager.getOrientation());
         productsRecyclerView.addItemDecoration(dividerItemDecoration);
+
+        fabAddNewProduct = (FloatingActionButton) findViewById(R.id.fabCreateNewProduct);
+
+        fabAddNewProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardAcitvity.this, AddProductActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
