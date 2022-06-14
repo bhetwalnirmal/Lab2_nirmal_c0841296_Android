@@ -46,6 +46,11 @@ public class DashboardAcitvity extends AppCompatActivity {
 
         productsRecyclerView = (RecyclerView) findViewById(R.id.productsRecyclerView);
         productList = appDb.productDao().getProductList();
+
+        if (productList.size() == 0) {
+            populateDummyData();
+        }
+
         productAdapter = new ProductAdapter(this, productList);
         layoutManager = new LinearLayoutManager(this);
         productsRecyclerView.setLayoutManager(layoutManager);
@@ -108,6 +113,33 @@ public class DashboardAcitvity extends AppCompatActivity {
         productsRecyclerView.addOnItemTouchListener(touchListener);
         List<Product> productList = appDb.productDao().getProductList();
         productAdapter.setProductList(productList);
+    }
+
+    private void populateDummyData() {
+        Product product = new Product("PATAGONIA [OUTDOOR GEAR]", "It’s no accident that Patagonia finds themselves on a list like this.\n" +
+                "\n" +
+                "They’ve spent years crafting and perfecting their well-known brand, and every single product description is an extension of that.\n" +
+                "\n" +
+                "Let’s pick a product, any product. This Linked Pack 28L will do", 249.99);
+        this.appDb.productDao().insertProduct(product);
+        product = new Product("DEWALT [HARDWARE]", "Often the art of writing a great product description that sells the product lies in the ability to describe the little things that make all the difference.\n" +
+                "\n" +
+                "The little differences and features in a product that may seem trivial or boring to you are important to shoppers and help them make purchase decisions.\n" +
+                "\n" +
+                "DeWalt, the creator of the 14 oz Mig Weld Framing Hammer, does just that", 59.49);
+        this.appDb.productDao().insertProduct(product);
+        product = new Product("APPSUMO [ONLINE COURSES]", "Not every ecommerce product is a physical one, yet it still takes the same wordsmith finesse to sell a service.\n" +
+                "\n" +
+                "AppSumo’s Make Your First Dollar online course is a prime example of the persuasive power of what I like to call the “ideal you.”\n" +
+                "\n", 59.49);
+        this.appDb.productDao().insertProduct(product);
+        product = new Product("SUBARU [AUTOS]", "Selling an item where the price point is in the tens of thousands of dollars takes a product description that is more than just a clever sentence or two. \n" +
+                "\n" +
+                "Selling something like a car, for example, requires a full understanding of your ideal customers’ psychographics. You need to speak to their deepest fears, pain points, and desires.\n" +
+                "\n" +
+                "Their new Subaru Ascent’s product page is handcrafted for their ideal customer: families", 12199.99);
+        this.appDb.productDao().insertProduct(product);
+
     }
 
     private void deleteProduct(int position) {
