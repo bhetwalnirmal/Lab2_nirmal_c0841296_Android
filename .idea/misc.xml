@@ -7,8 +7,11 @@
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.10989583333333333" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.10989583333333333" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.10989583333333333" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.12135416666666667" />
         <entry key="app/src/main/res/layout/layout_dashboard_row.xml" value="0.33814102564102566" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.4487111409505208" />
       </map>
     </option>
   </component>

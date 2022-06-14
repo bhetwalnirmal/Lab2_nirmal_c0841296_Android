@@ -5,11 +5,17 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nirmalbhetwal.lab2_nirmal_c0841296_android.R;
@@ -88,13 +94,8 @@ public class DashboardAcitvity extends AppCompatActivity {
             });
 
         productsRecyclerView.addOnItemTouchListener(touchListener);
-
-        int refresh_dashboard = (int) getIntent().getIntExtra("refresh_dashboard", 0);
-
-        if (refresh_dashboard != 0 && refresh_dashboard == 1) {
-            List<Product> productList = appDb.productDao().getProductList();
-            productAdapter.setProductList(productList);
-        }
+        List<Product> productList = appDb.productDao().getProductList();
+        productAdapter.setProductList(productList);
     }
 
     private void deleteProduct(int position) {
@@ -102,5 +103,54 @@ public class DashboardAcitvity extends AppCompatActivity {
 
         productList.remove(position);
         appDb.productDao().deleteProduct(product);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the options menu from XML
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search_bar).getActionView();
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                filterData(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filterData(s);
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    private void filterData(String s) {
+        Log.d("TAG", s);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search
+            Log.d("TAG", query);
+        }
     }
 }

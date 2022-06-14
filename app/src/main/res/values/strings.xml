@@ -12,4 +12,5 @@
     <string name="add_new_product">Add new product</string>
     <string name="product_name">Product Name</string>
     <string name="products">Products</string>
+    <string name="action_search_product">Search product</string>
 </resources>
