@@ -9,10 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab2_nirmal_c0841296_Android">
+        <activity
+            android:name=".activities.ProductDetailsActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.actions"
-            android:resource="@xml/searchable" />
-        <!-- <activity -->
+            android:resource="@xml/searchable" /> <!-- <activity -->
         <!-- android:name=".activities.Dashboard" -->
         <!-- android:exported="false" /> -->
         <activity
@@ -30,8 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
     </application>
 

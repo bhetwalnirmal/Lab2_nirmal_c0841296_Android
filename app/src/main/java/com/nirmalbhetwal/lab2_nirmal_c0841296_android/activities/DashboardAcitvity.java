@@ -72,6 +72,11 @@ public class DashboardAcitvity extends AppCompatActivity {
         touchListener.setClickable(new ProductListTouchListener.OnRowClickListener() {
             @Override
             public void onRowClicked(int position) {
+                Product product = productList.get(position);
+
+                Intent intent = new Intent(DashboardAcitvity.this, ProductDetailsActivity.class);
+                intent.putExtra("product_id", product.getId());
+                startActivity(intent);
 //                Toast.makeText(getApplicationContext(), productList.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
 
@@ -116,17 +121,17 @@ public class DashboardAcitvity extends AppCompatActivity {
     }
 
     private void populateDummyData() {
-        Product product = new Product("PATAGONIA [OUTDOOR GEAR]", "It’s no accident that Patagonia finds themselves on a list like this.\n" +
-                "\n" +
-                "They’ve spent years crafting and perfecting their well-known brand, and every single product description is an extension of that.\n" +
-                "\n" +
-                "Let’s pick a product, any product. This Linked Pack 28L will do", 249.99);
-        this.appDb.productDao().insertProduct(product);
-        product = new Product("DEWALT [HARDWARE]", "Often the art of writing a great product description that sells the product lies in the ability to describe the little things that make all the difference.\n" +
+        Product product = new Product("DEWALT [HARDWARE]", "Often the art of writing a great product description that sells the product lies in the ability to describe the little things that make all the difference.\n" +
                 "\n" +
                 "The little differences and features in a product that may seem trivial or boring to you are important to shoppers and help them make purchase decisions.\n" +
                 "\n" +
                 "DeWalt, the creator of the 14 oz Mig Weld Framing Hammer, does just that", 59.49);
+        this.appDb.productDao().insertProduct(product);
+        product = new Product("PATAGONIA [OUTDOOR GEAR]", "It’s no accident that Patagonia finds themselves on a list like this.\n" +
+                "\n" +
+                "They’ve spent years crafting and perfecting their well-known brand, and every single product description is an extension of that.\n" +
+                "\n" +
+                "Let’s pick a product, any product. This Linked Pack 28L will do", 249.99);
         this.appDb.productDao().insertProduct(product);
         product = new Product("APPSUMO [ONLINE COURSES]", "Not every ecommerce product is a physical one, yet it still takes the same wordsmith finesse to sell a service.\n" +
                 "\n" +
