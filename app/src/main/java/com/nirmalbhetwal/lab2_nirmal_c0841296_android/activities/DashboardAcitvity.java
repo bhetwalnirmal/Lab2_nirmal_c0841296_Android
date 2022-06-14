@@ -57,7 +57,7 @@ public class DashboardAcitvity extends AppCompatActivity {
         touchListener.setClickable(new ProductListTouchListener.OnRowClickListener() {
             @Override
             public void onRowClicked(int position) {
-                Toast.makeText(getApplicationContext(), productList.get(position).getName(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), productList.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -71,7 +71,7 @@ public class DashboardAcitvity extends AppCompatActivity {
                 public void onSwipeOptionClicked(int viewID, int position) {
                     switch (viewID){
                         case R.id.delete_task:
-                            productList.remove(position);
+                            deleteProduct(position);
                             productAdapter.setProductList(productList);
                             break;
                         case R.id.edit_task:
@@ -83,5 +83,12 @@ public class DashboardAcitvity extends AppCompatActivity {
             });
 
         productsRecyclerView.addOnItemTouchListener(touchListener);
+    }
+
+    private void deleteProduct(int position) {
+        Product product = productList.get(position);
+
+        productList.remove(position);
+        appDb.productDao().deleteProduct(product);
     }
 }
